@@ -104,9 +104,9 @@
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
-            // Send the form data to the backend via POST
+            // Send the form data to the backend via POST (Updated URL)
             try {
-                const response = await fetch('/calculate-tam', {
+                const response = await fetch('https://msme-tam-calculator.vercel.app/calculate-tam', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
