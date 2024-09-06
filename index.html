@@ -39,6 +39,12 @@
         button:hover {
             background-color: #45a049;
         }
+        #tamResult {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -82,22 +88,45 @@
 
             <button type="submit">Calculate TAM</button>
         </form>
+
+        <!-- Section to display the TAM result -->
+        <div id="tamResult"></div>
     </div>
 
-    <!-- JavaScript to handle form submission -->
+    <!-- JavaScript to handle form submission and display the result -->
     <script>
-        document.getElementById('tamForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form from submitting the traditional way
+        document.getElementById('tamForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Collect the form data
             var email = document.getElementById('email').value;
             var sectorProductType = document.getElementById('sectorProductType').value;
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
-            // Log form data to console (for debugging)
-            console.log('Form Data:', { email, sectorProductType, price, name });
+            // Send the form data to the backend via POST
+            try {
+                const response = await fetch('/calculate-tam', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        sectorProductType: sectorProductType,
+                        price: price,
+                        name: name,
+                    }),
+                });
 
-            // Here you would typically send the data to your backend API
-            alert('Your TAM calculation is being processed. You will receive an email shortly.');
+                const result = await response.json(); // Parse the JSON response
+
+                // Display the TAM result on the page
+                document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
+            }
         });
     </script>
 </body>
