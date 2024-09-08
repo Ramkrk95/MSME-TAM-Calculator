@@ -104,7 +104,7 @@
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
-            // Send the form data to the backend via POST (Updated URL)
+            // Send the form data to the backend via POST
             try {
                 const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
@@ -125,7 +125,7 @@
                 if (response.ok) {
                     document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
                 } else {
-                    document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
+                    document.getElementById('tamResult').innerHTML = 'An error occurred: ' + result.error;
                 }
             } catch (error) {
                 console.error('Error:', error);
