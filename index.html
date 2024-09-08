@@ -106,7 +106,7 @@
 
             // Send the form data to the backend via POST (Updated URL)
             try {
-                const response = await fetch('https://msme-tam-calculator.vercel.app/calculate-tam', {
+                const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -122,7 +122,11 @@
                 const result = await response.json(); // Parse the JSON response
 
                 // Display the TAM result on the page
-                document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
+                if (response.ok) {
+                    document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
+                } else {
+                    document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
+                }
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
