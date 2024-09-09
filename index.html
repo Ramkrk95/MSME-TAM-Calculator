@@ -69,15 +69,15 @@
             <label for="sectorProductType">Sector/Product Type *</label>
             <select id="sectorProductType" name="sectorProductType" required>
                 <option value="">Select an option</option>
-                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
-                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
-                <option value="Product-HR">Product-HR</option>
-                <option value="Product-CRM">Product-CRM</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
                 <option value="Industry-SaaS">Industry-SaaS</option>
                 <option value="Industry-Food">Industry-Food</option>
                 <option value="Industry-Travel">Industry-Travel</option>
                 <option value="Industry-Edtech">Industry-Edtech</option>
+                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
+                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
+                <option value="Product-HR">Product-HR</option>
+                <option value="Product-CRM">Product-CRM</option>
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
@@ -125,7 +125,7 @@
                 if (response.ok) {
                     document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
                 } else {
-                    document.getElementById('tamResult').innerHTML = 'An error occurred: ' + result.error;
+                    document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
                 }
             } catch (error) {
                 console.error('Error:', error);
