@@ -62,22 +62,28 @@
 
         <!-- Form Fields -->
         <form id="tamForm">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="Valid email address" required>
+
             <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
                 <option value="Industry-SaaS">Industry-SaaS</option>
-                <option value="Industry-Food">Industry-Food</option>
-                <option value="Industry-Travel">Industry-Travel</option>
-                <option value="Industry-Edtech">Industry-Edtech</option>
-                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
-                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
-                <option value="Product-HR">Product-HR</option>
-                <option value="Product-CRM">Product-CRM</option>
+                <option value="Industry- Food">Industry- Food</option>
+                <option value="Industry- Travel">Industry- Travel</option>
+                <option value="Industry- Edtech">Industry- Edtech</option>
+                <option value="Product- Accounting & Book Keeping">Product- Accounting & Book Keeping</option>
+                <option value="Product- Cybersecurity">Product- Cybersecurity</option>
+                <option value="Product- HR">Product- HR</option>
+                <option value="Product- CRM">Product- CRM</option>
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
             <input type="number" id="price" name="price" placeholder="Enter price in INR" required>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name">
 
             <button type="submit">Calculate TAM</button>
         </form>
@@ -92,8 +98,10 @@
             event.preventDefault(); // Prevent the default form submission
 
             // Collect the form data
+            var email = document.getElementById('email').value;
             var industryProductType = document.getElementById('industryProductType').value;
             var price = document.getElementById('price').value;
+            var name = document.getElementById('name').value;
 
             // Send the form data to the backend via POST
             try {
@@ -103,19 +111,21 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        industryProductType: industryProductType,
-                        price: price
+                        email: email,
+                        industryProductType: industryProductType.trim(),  // Ensure no extra spaces
+                        price: price,
+                        name: name,
                     }),
                 });
 
                 const result = await response.json(); // Parse the JSON response
 
-                // Display the TAM result on the page
+                // Display the TAM result on the page in the desired format
                 if (response.ok) {
                     document.getElementById('tamResult').innerHTML = `
-                        The Total Addressable Market (TAM in INR) is: ${result.tam} <br>
-                        Relevant Companies: ${result.relevantCompanies} <br>
-                        Pricing (in INR): ${result.pricing}
+                        <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
+                        <p>Relevant Companies: ${result.relevantCompanies}</p>
+                        <p>Pricing (in INR): ${result.pricing}</p>
                     `;
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
