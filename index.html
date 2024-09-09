@@ -123,7 +123,8 @@
 
                 // Display the TAM result on the page
                 if (response.ok) {
-                    document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
+                    const tam = Math.floor(result.tam); // Ensure no decimal places
+                    document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${tam}`;
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
