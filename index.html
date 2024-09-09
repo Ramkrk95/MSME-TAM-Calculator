@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSME TAM Calculator</title>
+    <!-- Include some basic styling -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -65,8 +67,8 @@
             <label for="email">Email *</label>
             <input type="email" id="email" name="email" placeholder="Valid email address" required>
 
-            <label for="sectorProductType">Industry/Product Type *</label>
-            <select id="sectorProductType" name="sectorProductType" required>
+            <label for="industryProductType">Industry/Product Type *</label>
+            <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
                 <option value="Industry-SaaS">Industry-SaaS</option>
@@ -99,11 +101,11 @@
 
             // Collect the form data
             var email = document.getElementById('email').value;
-            var sectorProductType = document.getElementById('sectorProductType').value;
+            var industryProductType = document.getElementById('industryProductType').value; // Updated field name
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
-            // Send the form data to the backend via POST (Updated URL)
+            // Send the form data to the backend via POST
             try {
                 const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
@@ -112,16 +114,21 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        sectorProductType: sectorProductType,
+                        industryProductType: industryProductType, // Updated field name
                         price: price,
                         name: name,
                     }),
                 });
 
                 const result = await response.json(); // Parse the JSON response
+                console.log(result); // Log the result to the console for debugging
 
-                // Display the TAM result on the page
-                document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
+                // Check if result.tam exists
+                if (result.tam) {
+                    document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
+                } else {
+                    document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
+                }
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
