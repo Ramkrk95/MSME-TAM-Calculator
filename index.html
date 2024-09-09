@@ -69,15 +69,15 @@
             <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
-                <option value="Industry-ecommerce">Industry-ecommerce</option>
-                <option value="Industry-SaaS">Industry-SaaS</option>
-                <option value="Industry-Food">Industry-Food</option>
-                <option value="Industry-Travel">Industry-Travel</option>
-                <option value="Industry-Edtech">Industry-Edtech</option>
-                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
-                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
-                <option value="Product-HR">Product-HR</option>
-                <option value="Product-CRM">Product-CRM</option>
+                <option value="Industry- ecommerce">Industry- ecommerce</option>
+                <option value="Industry- SaaS">Industry- SaaS</option>
+                <option value="Industry- Food">Industry- Food</option>
+                <option value="Industry- Travel">Industry- Travel</option>
+                <option value="Industry- Edtech">Industry- Edtech</option>
+                <option value="Product- Accounting & Book Keeping">Product- Accounting & Book Keeping</option>
+                <option value="Product- Cybersecurity">Product- Cybersecurity</option>
+                <option value="Product- HR">Product- HR</option>
+                <option value="Product- CRM">Product- CRM</option>
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
@@ -100,7 +100,7 @@
 
             // Collect the form data
             var email = document.getElementById('email').value;
-            var industryProductType = document.getElementById('industryProductType').value; // Updated field name
+            var industryProductType = document.getElementById('industryProductType').value;
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
@@ -113,17 +113,16 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        industryProductType: industryProductType, // Updated field name
+                        industryProductType: industryProductType,
                         price: price,
                         name: name,
                     }),
                 });
 
                 const result = await response.json(); // Parse the JSON response
-                console.log(result); // Log the result to the console for debugging
 
-                // Check if result.tam exists
-                if (result.tam) {
+                // Display the TAM result on the page
+                if (response.ok) {
                     document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${result.tam}`;
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
