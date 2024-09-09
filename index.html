@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSME TAM Calculator</title>
-    <!-- Include some basic styling -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -121,10 +120,13 @@
 
                 const result = await response.json(); // Parse the JSON response
 
-                // Display the TAM result on the page
+                // Display the TAM result on the page in the desired format
                 if (response.ok) {
-                    const tam = Math.floor(result.tam); // Ensure no decimal places
-                    document.getElementById('tamResult').innerHTML = `The Total Addressable Market (TAM) is: ${tam}`;
+                    document.getElementById('tamResult').innerHTML = `
+                        <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
+                        <p>Relevant Companies: ${result.relevantCompanies}</p>
+                        <p>Pricing (in INR): ${result.pricing}</p>
+                    `;
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
