@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSME TAM Calculator</title>
-    <!-- Basic styling -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -66,18 +65,18 @@
             <label for="email">Email *</label>
             <input type="email" id="email" name="email" placeholder="Valid email address" required>
 
-            <label for="industryProductType">Industry/Product Type *</label>
-            <select id="industryProductType" name="industryProductType" required>
+            <label for="sectorProductType">Industry/Product Type *</label>
+            <select id="sectorProductType" name="sectorProductType" required>
                 <option value="">Select an option</option>
-                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
-                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
-                <option value="Product-HR">Product-HR</option>
-                <option value="Product-CRM">Product-CRM</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
                 <option value="Industry-SaaS">Industry-SaaS</option>
                 <option value="Industry-Food">Industry-Food</option>
                 <option value="Industry-Travel">Industry-Travel</option>
                 <option value="Industry-Edtech">Industry-Edtech</option>
+                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
+                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
+                <option value="Product-HR">Product-HR</option>
+                <option value="Product-CRM">Product-CRM</option>
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
@@ -100,11 +99,11 @@
 
             // Collect the form data
             var email = document.getElementById('email').value;
-            var industryProductType = document.getElementById('industryProductType').value;
+            var sectorProductType = document.getElementById('sectorProductType').value;
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
-            // Send the form data to the backend via POST
+            // Send the form data to the backend via POST (Updated URL)
             try {
                 const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
@@ -113,7 +112,7 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        industryProductType: industryProductType,
+                        sectorProductType: sectorProductType,
                         price: price,
                         name: name,
                     }),
