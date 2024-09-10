@@ -26,7 +26,6 @@
         document.getElementById('tamForm').addEventListener('submit', function (event) {
             event.preventDefault();  // Prevent default form submission
             
-            // Collect form data
             const data = {
                 email: document.getElementById('email').value,
                 industryProductType: document.getElementById('industryProductType').value,
@@ -34,27 +33,19 @@
                 name: document.getElementById('name').value,
             };
 
-            // Make a POST request to the backend API
             fetch('http://localhost:3000/api/calculate-tam', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),  // Send data as JSON
+                body: JSON.stringify(data),
             })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Failed to calculate TAM.');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
-                // Display the TAM result
                 console.log('Success:', data);
                 alert('TAM Calculated: ' + data.tam);
             })
             .catch((error) => {
-                // Handle errors
                 console.error('Error:', error);
                 alert('An error occurred while calculating TAM.');
             });
