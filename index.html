@@ -76,13 +76,13 @@
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
                 <option value="Industry-SaaS">Industry-SaaS</option>
-                <option value="Industry-Food">Industry-Food</option>
-                <option value="Industry-Travel">Industry-Travel</option>
-                <option value="Industry-Edtech">Industry-Edtech</option>
-                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
-                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
-                <option value="Product-HR">Product-HR</option>
-                <option value="Product-CRM">Product-CRM</option>
+                <option value="Industry- Food">Industry- Food</option>
+                <option value="Industry- Travel">Industry- Travel</option>
+                <option value="Industry- Edtech">Industry- Edtech</option>
+                <option value="Product- Accounting & Book Keeping">Product- Accounting & Book Keeping</option>
+                <option value="Product- Cybersecurity">Product- Cybersecurity</option>
+                <option value="Product- HR">Product- HR</option>
+                <option value="Product- CRM">Product- CRM</option>
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
@@ -142,6 +142,7 @@
                         <p>Pricing (in INR): ${result.pricing}</p>
                     `;
                 } else {
+                    console.log(result); // Log the exact error message returned by the backend
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
             } catch (error) {
