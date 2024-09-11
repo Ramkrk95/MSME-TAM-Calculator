@@ -117,13 +117,8 @@
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
-            // Debug: Log the form data to the console to check
-            console.log('Form Data:', {
-                email: email,
-                industryProductType: industryProductType.trim(),
-                price: price,
-                name: name
-            });
+            // Debugging logs to show form data
+            console.log('Form Data:', { email, industryProductType, price, name });
 
             // Send the form data to the backend via POST
             try {
@@ -141,6 +136,9 @@
                 });
 
                 const result = await response.json(); // Parse the JSON response
+
+                // Debugging log for the response
+                console.log('Response from server:', result);
 
                 // Display the TAM result on the page in the desired format
                 if (response.ok) {
