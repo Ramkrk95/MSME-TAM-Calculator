@@ -144,11 +144,11 @@
 
                 // Display the TAM result on the page in the desired format
                 if (response.ok) {
-                    document.getElementById('tamResult').innerHTML = 
+                    document.getElementById('tamResult').innerHTML = `
                         <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
                         <p>Relevant Companies: ${result.relevantCompanies}</p>
                         <p>Pricing (in INR): ${result.pricing}</p>
-                    ;
+                    `;
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
