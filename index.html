@@ -140,20 +140,24 @@
                     }),
                 });
 
+                console.log('Backend response received:', response);
+
                 const result = await response.json(); // Parse the JSON response
 
                 // Display the TAM result on the page in the desired format
                 if (response.ok) {
+                    console.log('TAM result:', result);
                     document.getElementById('tamResult').innerHTML = `
                         <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
                         <p>Relevant Companies: ${result.relevantCompanies}</p>
                         <p>Pricing (in INR): ${result.pricing}</p>
                     `;
                 } else {
+                    console.log('Error in response:', result);
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
             } catch (error) {
-                console.error('Error:', error);
+                console.error('Error in fetch:', error);
                 document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
             }
         });
