@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
             font-family: Arial, sans-serif;
             margin: 20px;
         }
+
         .container {
             max-width: 600px;
             margin: auto;
@@ -18,14 +20,19 @@
             border-radius: 5px;
             background-color: #f9f9f9;
         }
-        h1, h2 {
+
+        h1,
+        h2 {
             text-align: center;
         }
-        input, select {
+
+        input,
+        select {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
         }
+
         button {
             width: 100%;
             padding: 10px;
@@ -35,15 +42,18 @@
             border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #45a049;
         }
+
         #tamResult {
             margin-top: 20px;
             font-weight: bold;
             color: #333;
             text-align: center;
         }
+
         .disclaimer {
             margin-top: 20px;
             font-size: 14px;
@@ -52,11 +62,15 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>MSME TAM Calculator</h1>
         <p>
-            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? This calculator is designed to help you estimate the total addressable market (TAM) by providing insights into the number of companies that have already embraced digital tools and are potentially willing to invest in the software you are planning to build.
+            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India?
+            This calculator is designed to help you estimate the total addressable market (TAM) by providing insights
+            into the number of companies that have already embraced digital tools and are potentially willing to invest
+            in the software you are planning to build.
         </p>
         <h2>Instructions</h2>
         <ul>
@@ -64,7 +78,8 @@
             <li>Understand market potential for your product or solution.</li>
             <li>Make informed decisions to effectively target your audience.</li>
         </ul>
-        <p>Simply fill in the required details to discover the potential market size for your innovative product or solution. Let’s get started!</p>
+        <p>Simply fill in the required details to discover the potential market size for your innovative product or solution.
+            Let’s get started!</p>
 
         <!-- Form Fields -->
         <form id="tamForm">
@@ -76,13 +91,13 @@
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
                 <option value="Industry-SaaS">Industry-SaaS</option>
-                <option value="Industry- Food">Industry- Food</option>
-                <option value="Industry- Travel">Industry- Travel</option>
-                <option value="Industry- Edtech">Industry- Edtech</option>
-                <option value="Product- Accounting & Book Keeping">Product- Accounting & Book Keeping</option>
-                <option value="Product- Cybersecurity">Product- Cybersecurity</option>
-                <option value="Product- HR">Product- HR</option>
-                <option value="Product- CRM">Product- CRM</option>
+                <option value="Industry-Food">Industry-Food</option>
+                <option value="Industry-Travel">Industry-Travel</option>
+                <option value="Industry-Edtech">Industry-Edtech</option>
+                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
+                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
+                <option value="Product-HR">Product-HR</option>
+                <option value="Product-CRM">Product-CRM</option>
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
@@ -99,16 +114,16 @@
 
         <!-- Disclaimer -->
         <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs. 
-            For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, 
-            and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed 
-            analysis is recommended to refine your strategy.</p>
+            <p><strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs.
+                For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets,
+                and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed
+                analysis is recommended to refine your strategy.</p>
         </div>
     </div>
 
     <!-- JavaScript to handle form submission and display the result -->
     <script>
-        document.getElementById('tamForm').addEventListener('submit', async function(event) {
+        document.getElementById('tamForm').addEventListener('submit', async function (event) {
             event.preventDefault(); // Prevent the default form submission
 
             // Collect the form data
@@ -118,7 +133,7 @@
             var name = document.getElementById('name').value;
 
             // Debug: Log the form data to the console to check
-            console.log('Form Data:', {
+            console.log('Sending data to backend: ', {
                 email: email,
                 industryProductType: industryProductType.trim(),
                 price: price,
@@ -142,6 +157,10 @@
 
                 const result = await response.json(); // Parse the JSON response
 
+                // Debug: Log the backend response
+                console.log('Response status: ', response.status);
+                console.log('Response data: ', result);
+
                 // Display the TAM result on the page in the desired format
                 if (response.ok) {
                     document.getElementById('tamResult').innerHTML = `
@@ -149,16 +168,15 @@
                         <p>Relevant Companies: ${result.relevantCompanies}</p>
                         <p>Pricing (in INR): ${result.pricing}</p>
                     `;
-                    console.log('Form submitted and TAM calculated:', result);
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
-                    console.error('Error occurred:', response.statusText);
                 }
             } catch (error) {
-                console.error('Fetch Error:', error);
+                console.error('Error while submitting the form: ', error);
                 document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
             }
         });
     </script>
 </body>
+
 </html>
