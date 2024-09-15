@@ -115,8 +115,7 @@
             console.log('Sending data to backend:', { email, industryProductType, price, name });
 
             try {
-                // Update this with your Vercel URL
-                const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
+                const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {  // Ensure this is Vercel URL
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
