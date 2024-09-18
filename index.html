@@ -2,125 +2,103 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSME TAM Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
             padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #f9f9f9;
         }
-        h1, h2 {
-            text-align: center;
+        .instructions {
+            margin-bottom: 30px;
         }
-        input, select {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
+        .form-section {
+            margin-bottom: 20px;
         }
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        #tamResult {
+        .result-section {
             margin-top: 20px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
         }
-        .disclaimer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #555;
-            text-align: center;
+        .error-message {
+            color: red;
         }
-        .form-feedback {
-            margin-top: 20px;
-            text-align: center;
+        .success-message {
+            color: green;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>MSME TAM Calculator</h1>
-        <p>
-            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? This calculator is designed to help you estimate the total addressable market (TAM) by providing insights into the number of companies that have already embraced digital tools and are potentially willing to invest in the software you are planning to build.
+        <h1>Calculate the TAM in the MSME Sector</h1>
+        <p class="instructions">
+            <strong>Instructions:</strong>
+            <ul>
+                <li>Identify the number of MSMEs that are digitally active and open to adopting new technologies.</li>
+                <li>Understand market potential for your product or solution.</li>
+                <li>Make informed decisions to effectively target your audience.</li>
+            </ul>
+            Simply fill in the required details to discover the potential market size for your innovative product or solution. Let's get started!
         </p>
-        <h2>Instructions</h2>
-        <ul>
-            <li>Identify the number of MSMEs that are digitally active and open to adopting new technologies.</li>
-            <li>Understand market potential for your product or solution.</li>
-            <li>Make informed decisions to effectively target your audience.</li>
-        </ul>
-        <p>Simply fill in the required details to discover the potential market size for your innovative product or solution. Let's get started!</p>
 
         <form id="tamForm">
-            <label for="email">Email *</label>
-            <input type="email" id="email" name="email" placeholder="Valid email address" required>
+            <div class="form-group form-section">
+                <label for="email">Email *</label>
+                <input type="email" class="form-control" id="email" placeholder="Your email address" required>
+            </div>
 
-            <label for="industryProductType">Industry/Product Type *</label>
-            <select id="industryProductType" name="industryProductType" required>
-                <option value="">Select an option</option>
-                <!-- Complete list of industries based on Google Sheet lookup -->
-                <option value="Industry-ecommerce">Industry - Ecommerce</option>
-                <option value="Industry-SaaS">Industry - SaaS</option>
-                <option value="Industry-Food">Industry - Food</option>
-                <option value="Industry-Travel">Industry - Travel</option>
-                <option value="Industry-Edtech">Industry - Edtech</option>
-                <option value="Product-Accounting & Book Keeping">Product - Accounting & Book Keeping</option>
-                <option value="Product-Cybersecurity">Product - Cybersecurity</option>
-                <option value="Product-HR">Product - HR</option>
-                <option value="Product-CRM">Product - CRM</option>
-                <!-- Add more options if needed -->
-            </select>
+            <div class="form-group form-section">
+                <label for="industryProductType">Industry/Product Type *</label>
+                <select class="form-control" id="industryProductType" name="industryProductType" required>
+                    <option value="">Select an option</option>
+                    <option value="Industry-ecommerce">Industry - Ecommerce</option>
+                    <option value="Industry-SaaS">Industry - SaaS</option>
+                    <option value="Industry-Food">Industry - Food</option>
+                    <option value="Industry-Travel">Industry - Travel</option>
+                    <option value="Industry-Edtech">Industry - Edtech</option>
+                    <option value="Product-Accounting & Book Keeping">Product - Accounting & Book Keeping</option>
+                    <option value="Product-Cybersecurity">Product - Cybersecurity</option>
+                    <option value="Product-HR">Product - HR</option>
+                    <option value="Product-CRM">Product - CRM</option>
+                </select>
+            </div>
 
-            <label for="price">Price of your product/service yearly (in INR) *</label>
-            <input type="number" id="price" name="price" placeholder="Enter price in INR" required>
+            <div class="form-group form-section">
+                <label for="price">Price of your product/service yearly (in INR) *</label>
+                <input type="number" class="form-control" id="price" placeholder="Enter your yearly price" required>
+            </div>
 
-            <label for="name">Name *</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
+            <div class="form-group form-section">
+                <label for="name">Name *</label>
+                <input type="text" class="form-control" id="name" placeholder="Your name" required>
+            </div>
 
-            <button type="submit">Calculate TAM</button>
+            <button type="submit" class="btn btn-primary">Calculate TAM</button>
         </form>
 
-        <div id="tamResult"></div>
-
-        <div class="form-feedback">
-            <p>For additional information or to provide feedback, <a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo/viewform" target="_blank">fill out this form</a>.</p>
+        <div id="resultSection" class="result-section">
+            <p id="resultMessage"></p>
         </div>
 
-        <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs. 
-            For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, 
-            and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed 
-            analysis is recommended to refine your strategy.</p>
-        </div>
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs. For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed analysis is recommended to refine your strategy.
+        </p>
+
+        <p>For additional information or to provide feedback, <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1010RdWmsqBfMUs67CL4YuIK2d9YsfB2AnzihyV34YjLnA/viewform" target="_blank">fill out this form</a>.</p>
     </div>
 
     <script>
         document.getElementById('tamForm').addEventListener('submit', async function(event) {
             event.preventDefault();
 
-            var email = document.getElementById('email').value;
-            var industryProductType = document.getElementById('industryProductType').value;
-            var price = document.getElementById('price').value;
-            var name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const industryProductType = document.getElementById('industryProductType').value;
+            const price = document.getElementById('price').value;
+            const name = document.getElementById('name').value;
+
+            if (!email || !industryProductType || !price || !name) {
+                document.getElementById('resultMessage').textContent = 'Error: All fields are required.';
+                document.getElementById('resultMessage').className = 'error-message';
+                return;
+            }
 
             try {
                 const response = await fetch('http://localhost:3000/api/calculate-tam', {
@@ -131,20 +109,19 @@
                     body: JSON.stringify({ email, industryProductType, price, name }),
                 });
 
-                const result = await response.json();
+                const data = await response.json();
 
                 if (response.ok) {
-                    document.getElementById('tamResult').innerHTML = `
-                        <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
-                        <p>Relevant Companies: ${result.relevantCompanies}</p>
-                        <p>Pricing (in INR): ${result.pricing}</p>
-                    `;
+                    document.getElementById('resultMessage').textContent = `TAM: ${data.tam}, Relevant Companies: ${data.relevantCompanies}, Pricing: INR ${data.pricing}`;
+                    document.getElementById('resultMessage').className = 'success-message';
                 } else {
-                    document.getElementById('tamResult').innerHTML = `Error: ${result.message}`;
+                    document.getElementById('resultMessage').textContent = `Error: ${data.message || 'Error calculating TAM or submitting form data'}`;
+                    document.getElementById('resultMessage').className = 'error-message';
                 }
             } catch (error) {
                 console.error('Error:', error);
-                document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
+                document.getElementById('resultMessage').textContent = 'Error: Unable to calculate TAM or submit form data. Please try again.';
+                document.getElementById('resultMessage').className = 'error-message';
             }
         });
     </script>
