@@ -60,8 +60,16 @@
     <div class="container">
         <h1>MSME TAM Calculator</h1>
         <p>
-            Fill in the required details to calculate the total addressable market for your product or solution.
+            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? This calculator is designed to help you estimate the total addressable market (TAM) by providing insights into the number of companies that have already embraced digital tools and are potentially willing to invest in the software you are planning to build.
         </p>
+        <h2>Instructions</h2>
+        <ul>
+            <li>Identify the number of MSMEs that are digitally active and open to adopting new technologies.</li>
+            <li>Understand market potential for your product or solution.</li>
+            <li>Make informed decisions to effectively target your audience.</li>
+        </ul>
+        <p>Simply fill in the required details to discover the potential market size for your innovative product or solution. Let's get started!</p>
+
         <form id="tamForm">
             <label for="email">Email *</label>
             <input type="email" id="email" name="email" placeholder="Valid email address" required>
@@ -69,9 +77,17 @@
             <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
-                <option value="Industry-ecommerce">Industry-ecommerce</option>
-                <option value="Industry-SaaS">Industry-SaaS</option>
-                <option value="Industry-Food">Industry-Food</option>
+                <!-- Complete list of industries based on Google Sheet lookup -->
+                <option value="Industry-ecommerce">Industry - Ecommerce</option>
+                <option value="Industry-SaaS">Industry - SaaS</option>
+                <option value="Industry-Food">Industry - Food</option>
+                <option value="Industry-Travel">Industry - Travel</option>
+                <option value="Industry-Edtech">Industry - Edtech</option>
+                <option value="Product-Accounting & Book Keeping">Product - Accounting & Book Keeping</option>
+                <option value="Product-Cybersecurity">Product - Cybersecurity</option>
+                <option value="Product-HR">Product - HR</option>
+                <option value="Product-CRM">Product - CRM</option>
+                <!-- Add more options if needed -->
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
@@ -91,8 +107,9 @@
 
         <div class="disclaimer">
             <p><strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs. 
-            Additional filtering such as company size, geographic location, and technology adoption levels should be considered.
-            </p>
+            For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, 
+            and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed 
+            analysis is recommended to refine your strategy.</p>
         </div>
     </div>
 
