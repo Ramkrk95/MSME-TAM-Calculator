@@ -108,8 +108,28 @@
 
     <!-- JavaScript to handle form submission and display the result -->
     <script>
+        // Function to submit form data to Google Forms
+        function submitToGoogleForms(email, name) {
+            const googleFormUrl = 'https://docs.google.com/forms/d/e/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo/formResponse';
+            
+            const formData = new URLSearchParams();
+            formData.append('entry.1045781291', email);  // Email entry ID
+            formData.append('entry.1065046570', name);   // Name entry ID
+            
+            fetch(googleFormUrl, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'  // no-cors mode because Google Forms does not return a response
+            }).then(response => {
+                console.log('Google Form submission successful');
+            }).catch(error => {
+                console.error('Error submitting to Google Form:', error);
+            });
+        }
+
+        // Function to handle form submission
         document.getElementById('tamForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();  // Prevent the default form submission
 
             // Collect the form data
             var email = document.getElementById('email').value;
@@ -125,7 +145,7 @@
                 name: name
             });
 
-            // Send the form data to the backend via POST
+            // Send the form data to the backend for TAM calculation
             try {
                 const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
@@ -134,7 +154,7 @@
                     },
                     body: JSON.stringify({
                         email: email,
-                        industryProductType: industryProductType.trim(),  // Ensure no extra spaces
+                        industryProductType: industryProductType.trim(),
                         price: price,
                         name: name,
                     }),
@@ -149,6 +169,10 @@
                         <p>Relevant Companies: ${result.relevantCompanies}</p>
                         <p>Pricing (in INR): ${result.pricing}</p>
                     `;
+
+                    // Submit to Google Form after TAM calculation
+                    submitToGoogleForms(email, name);  // Add the Google Form submission here
+
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
