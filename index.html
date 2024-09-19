@@ -64,9 +64,8 @@
             <li>Understand market potential for your product or solution.</li>
             <li>Make informed decisions to effectively target your audience.</li>
         </ul>
-        <p>Simply fill in the required details to discover the potential market size for your innovative product or solution. Let’s get started!</p>
+        <p>Simply fill in the required details to discover the potential market size for your innovative product or solution. Let's get started!</p>
 
-        <!-- Form Fields -->
         <form id="tamForm">
             <label for="email">Email *</label>
             <input type="email" id="email" name="email" placeholder="Valid email address" required>
@@ -94,10 +93,8 @@
             <button type="submit">Calculate TAM</button>
         </form>
 
-        <!-- Section to display the TAM result -->
         <div id="tamResult"></div>
 
-        <!-- Disclaimer -->
         <div class="disclaimer">
             <p><strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs. 
             For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, 
@@ -106,43 +103,30 @@
         </div>
     </div>
 
-    <!-- JavaScript to handle form submission and display the result -->
     <script>
         document.getElementById('tamForm').addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent the default form submission
+            event.preventDefault();
 
-            // Collect the form data
             var email = document.getElementById('email').value;
             var industryProductType = document.getElementById('industryProductType').value;
             var price = document.getElementById('price').value;
             var name = document.getElementById('name').value;
 
-            // Debug: Log the form data to the console to check
-            console.log('Form Data:', {
-                email: email,
-                industryProductType: industryProductType.trim(),
-                price: price,
-                name: name
-            });
+            console.log('Sending data to backend:', { email, industryProductType, price, name });
 
-            // Send the form data to the backend for TAM calculation and Google Form submission
             try {
-                const response = await fetch('https://msme-tam-calculator.vercel.app/api/combined-endpoint', {
+                const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({
-                        email: email,
-                        industryProductType: industryProductType.trim(),
-                        price: price,
-                        name: name,
-                    }),
+                    body: JSON.stringify({ email, industryProductType, price, name }),
                 });
 
-                const result = await response.json(); // Parse the JSON response
+                console.log('Response status:', response.status);
+                const result = await response.json();
+                console.log('Response data:', result);
 
-                // Display the TAM result on the page
                 if (response.ok) {
                     document.getElementById('tamResult').innerHTML = `
                         <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
@@ -150,9 +134,8 @@
                         <p>Pricing (in INR): ${result.pricing}</p>
                     `;
                 } else {
-                    document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
+                    document.getElementById('tamResult').innerHTML = `Error: ${result.message || 'Could not calculate TAM'}`;
                 }
-
             } catch (error) {
                 console.error('Error:', error);
                 document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
