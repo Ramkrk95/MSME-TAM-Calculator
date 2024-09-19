@@ -125,9 +125,9 @@
                 name: name
             });
 
+            // Send the form data to the backend for TAM calculation and Google Form submission
             try {
-                // Send the form data to the backend for TAM calculation
-                const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
+                const response = await fetch('https://msme-tam-calculator.vercel.app/api/combined-endpoint', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -152,20 +152,6 @@
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
-
-                // Submit the form data to Google Forms after TAM calculation
-                const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSc1010RdWmsqBfMUs67CL4YuIK2d9YsfB2AnzihyV34YjLnA/formResponse';
-                const formData = new URLSearchParams();
-                formData.append('entry.1045781291', email); // Email field
-                formData.append('entry.1065045769', name);  // Name field
-
-                await fetch(formUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: formData.toString(),
-                });
 
             } catch (error) {
                 console.error('Error:', error);
