@@ -33,7 +33,7 @@
 
         h2 {
             color: #007BFF;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 10px;
         }
 
@@ -46,12 +46,14 @@
         }
 
         .instructions {
-            background-color: #ffffe0;
+            background-color: #f9f9d1;
             border-left: 5px solid #ffeb3b;
+            padding: 10px;
+            font-size: 1rem;
         }
 
         .instructions ul {
-            list-style: none;
+            list-style: disc;
             padding-left: 20px;
         }
 
@@ -67,6 +69,7 @@
             font-weight: bold;
             display: block;
             margin-bottom: 5px;
+            font-size: 1rem;
         }
 
         input, select {
@@ -75,15 +78,17 @@
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            font-size: 1rem;
         }
 
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #28a745;
             color: white;
             border: none;
             border-radius: 5px;
+            font-size: 1.2rem;
             cursor: pointer;
         }
 
@@ -92,19 +97,22 @@
         }
 
         .result-section {
-            background-color: #f1f1f1;
+            background-color: #e3f2fd;
             text-align: center;
             padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #90caf9;
         }
 
         .result-section p {
-            font-size: 1.2rem;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .important-note {
             background-color: #fffbe0;
             border-left: 5px solid #ffc107;
+            padding: 10px;
+            font-size: 0.95rem;
         }
 
         .form-link a {
@@ -123,7 +131,9 @@
             MSME TAM Calculator
         </div>
 
-        <p>This calculator helps you estimate the Total Addressable Market (TAM) for your MSME product or solution by providing insights into digitally active MSMEs. Let's get started by filling in the required details.</p>
+        <p style="font-size: 1rem; padding: 10px;">
+            This calculator helps you estimate the Total Addressable Market (TAM) for your MSME product or solution by providing insights into digitally active MSMEs. Let's get started by filling in the required details.
+        </p>
 
         <div class="instructions">
             <h2>Getting Started</h2>
@@ -135,7 +145,7 @@
         </div>
 
         <form id="tamForm">
-           <label for="industryProductType">Industry/Product Type *</label>
+             <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
