@@ -9,7 +9,6 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f5f5f5;
         }
         .container {
             max-width: 600px;
@@ -17,33 +16,23 @@
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            background-color: #fff;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
         }
-        h1, h2, p {
+        h1, h2 {
             text-align: center;
-        }
-        label {
-            font-weight: bold;
-            margin-top: 10px;
         }
         input, select {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            box-sizing: border-box;
         }
         button {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
         }
         button:hover {
@@ -61,28 +50,13 @@
             color: #555;
             text-align: center;
         }
-        .form-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .form-link a {
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .form-link a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>MSME TAM Calculator</h1>
         <p>
-            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? 
-            This calculator is designed to help you estimate the total addressable market (TAM) by providing insights into 
-            the number of companies that have already embraced digital tools and are potentially willing to invest in the 
-            software you are planning to build.
+            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? This calculator is designed to help you estimate the total addressable market (TAM) by providing insights into the number of companies that have already embraced digital tools and are potentially willing to invest in the software you are planning to build.
         </p>
         <h2>Instructions</h2>
         <ul>
@@ -94,31 +68,34 @@
 
         <!-- Form Fields -->
         <form id="tamForm">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="Valid email address" required>
+
             <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
                 <option value="Industry-SaaS">Industry-SaaS</option>
-                <option value="Industry-Food">Industry-Food</option>
-                <option value="Industry-Travel">Industry-Travel</option>
-                <option value="Industry-Edtech">Industry-Edtech</option>
-                <option value="Product-Accounting & Book Keeping">Product-Accounting & Book Keeping</option>
-                <option value="Product-Cybersecurity">Product-Cybersecurity</option>
-                <option value="Product-HR">Product-HR</option>
-                <option value="Product-CRM">Product-CRM</option>
+                <option value="Industry- Food">Industry- Food</option>
+                <option value="Industry- Travel">Industry- Travel</option>
+                <option value="Industry- Edtech">Industry- Edtech</option>
+                <option value="Product- Accounting & Book Keeping">Product- Accounting & Book Keeping</option>
+                <option value="Product- Cybersecurity">Product- Cybersecurity</option>
+                <option value="Product- HR">Product- HR</option>
+                <option value="Product- CRM">Product- CRM</option>
             </select>
 
             <label for="price">Price of your product/service yearly (in INR) *</label>
             <input type="number" id="price" name="price" placeholder="Enter price in INR" required>
 
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name">
+
             <button type="submit">Calculate TAM</button>
         </form>
 
         <!-- Section to display the TAM result -->
-        <div id="tamResult">
-            <p><strong>Calculated TAM (Preliminary Estimate):</strong></p>
-            <p><em>This tool helps reduce a step in your TAM calculation process by providing an initial high-level estimate.</em></p>
-        </div>
+        <div id="tamResult"></div>
 
         <!-- Disclaimer -->
         <div class="disclaimer">
@@ -126,13 +103,6 @@
             For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, 
             and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed 
             analysis is recommended to refine your strategy.</p>
-            <p><em>Note:</em> This tool provides a high-level TAM estimate to assist in your market sizing process. It will reduce a step in your TAM calculation and allow for further refinement of market size based on additional criteria (company size, revenue brackets, geographic location, etc.). For a more tailored estimate, we recommend further analysis beyond this preliminary calculation.</p>
-        </div>
-
-        <!-- Google Form Link -->
-        <div class="form-link">
-            <p>If you want to receive the industry-wise relevant companies report, please fill out the form:</p>
-            <a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo/edit" target="_blank">Click here to submit your name and email.</a>
         </div>
     </div>
 
@@ -142,13 +112,17 @@
             event.preventDefault(); // Prevent the default form submission
 
             // Collect the form data
+            var email = document.getElementById('email').value;
             var industryProductType = document.getElementById('industryProductType').value;
             var price = document.getElementById('price').value;
+            var name = document.getElementById('name').value;
 
             // Debug: Log the form data to the console to check
             console.log('Form Data:', {
+                email: email,
                 industryProductType: industryProductType.trim(),
-                price: price
+                price: price,
+                name: name
             });
 
             // Send the form data to the backend via POST
@@ -159,8 +133,10 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        industryProductType: industryProductType.trim(),
-                        price: price
+                        email: email,
+                        industryProductType: industryProductType.trim(),  // Ensure no extra spaces
+                        price: price,
+                        name: name,
                     }),
                 });
 
