@@ -35,7 +35,16 @@
             color: #333;
         }
 
-        .instructions {
+        .summary {
+            background-color: #eef5ff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        .info-box {
             background-color: #fff5c3;
             border-left: 4px solid #ffcc00;
             padding: 20px;
@@ -86,10 +95,6 @@
             font-size: 24px;
         }
 
-        .results p {
-            font-size: 20px;
-        }
-
         .results-box {
             display: flex;
             justify-content: space-between;
@@ -131,19 +136,18 @@
 <body>
     <div class="container">
         <h1>MSME TAM Calculator</h1>
-        <p>
-            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? This calculator is designed to give you a preliminary estimate of the total addressable market (TAM) by offering insights into the number of companies that are already embracing digital tools and are potentially open to investing in the software you are building. This step will help streamline your overall TAM calculation.
-        </p>
-        <h2>Instructions</h2>
-        <div class="instructions">
-            <ul>
-                <li>Identify the number of MSMEs that are digitally active and open to adopting new technologies.</li>
-                <li>Understand the market potential for your product or solution.</li>
-                <li>Make informed decisions to effectively target your audience.</li>
-            </ul>
+        <div class="summary">
+            This calculator helps you estimate the Total Addressable Market (TAM) for your MSME product or solution by providing insights into digitally active MSMEs. Let’s get started by filling in the required details.
         </div>
 
-        <p>Simply fill in the required details below to get a high-level estimate of the potential market size for your innovative product or solution. Let’s get started!</p>
+        <h2>Getting Started</h2>
+        <div class="info-box">
+            <ul>
+                <li>Determine how many MSMEs are digitally active and open to adopting new technologies.</li>
+                <li>Gauge the market potential for your product or solution.</li>
+                <li>Make more informed decisions to target your audience effectively.</li>
+            </ul>
+        </div>
 
         <!-- Form Fields -->
         <form id="tamForm">
@@ -160,7 +164,7 @@
                 <option value="Product- HR">Product- HR</option>
                 <option value="Product- CRM">Product- CRM</option>
             </select>
-
+            
             <label for="price">Price of your product/service yearly (in INR) *</label>
             <input type="number" id="price" name="price" placeholder="Enter price in INR" required>
 
