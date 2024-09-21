@@ -197,6 +197,15 @@
             var industryProductType = document.getElementById('industryProductType').value;
             var price = document.getElementById('price').value;
 
+            // Function to format number in Indian numeration
+            function formatIndianNumber(num) {
+                var str = num.toString().split('.');
+                if (str[0].length > 3) {
+                    str[0] = str[0].substring(0, str[0].length - 3).replace(/\B(?=(\d{2})+(?!\d))/g, ",") + "," + str[0].substring(str[0].length - 3);
+                }
+                return str.join('.');
+            }
+
             try {
                 const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
@@ -214,9 +223,9 @@
                 if (response.ok) {
                     document.getElementById('tamResult').style.display = 'block';
                     document.getElementById('tamResult').innerHTML = `
-                        <p>Total Addressable Market (TAM): ₹${Number(result.tam).toLocaleString()}</p>
-                        <p>Relevant Companies: ${Number(result.relevantCompanies).toLocaleString()}</p>
-                        <p>Your Pricing (Yearly): ₹${Number(result.pricing).toLocaleString()}</p>
+                        <p>Total Addressable Market (TAM): ₹${formatIndianNumber(result.tam)}</p>
+                        <p>Relevant Companies: ${formatIndianNumber(result.relevantCompanies)}</p>
+                        <p>Your Pricing (Yearly): ₹${formatIndianNumber(result.pricing)}</p>
                     `;
                 } else {
                     document.getElementById('tamResult').style.display = 'block';
