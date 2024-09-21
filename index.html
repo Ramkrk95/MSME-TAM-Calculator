@@ -20,21 +20,25 @@
         }
         h1, h2 {
             text-align: center;
+            margin-bottom: 20px;
         }
         input, select {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background-color: #4CAF50;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 20px;
         }
         button:hover {
             background-color: #45a049;
@@ -44,13 +48,14 @@
             font-weight: bold;
             color: #333;
             text-align: center;
-            line-height: 1.6;
+            line-height: 1.8;
         }
         .disclaimer {
             margin-top: 20px;
             font-size: 14px;
             color: #555;
             text-align: center;
+            line-height: 1.6;
         }
         .important-note {
             color: #e74c3c;
@@ -151,7 +156,7 @@
                         <p>Pricing (in INR): ${result.pricing}</p>
                     `;
                 } else {
-                    document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
+                    document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
                 }
             } catch (error) {
                 console.error('Error:', error);
