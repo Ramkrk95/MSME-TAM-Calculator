@@ -72,13 +72,6 @@
         .form-link a:hover {
             text-decoration: underline;
         }
-        #tamResult {
-            margin-top: 20px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
@@ -117,9 +110,6 @@
             <button type="submit">Calculate TAM</button>
         </form>
 
-        <!-- Section to display the TAM result -->
-        <div id="tamResult"></div>
-
         <!-- Disclaimer -->
         <div class="disclaimer">
             <p><strong>Important:</strong> The results provided here are a preliminary calculation to help you take the first step in estimating your market size. For more detailed TAM calculations, additional filters (such as company size, location, revenue, and technology adoption levels) are recommended.</p>
@@ -153,17 +143,13 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    document.getElementById('tamResult').innerHTML = `
-                        <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
-                        <p>Relevant Companies: ${result.relevantCompanies}</p>
-                        <p>Pricing (in INR): ${result.pricing}</p>
-                    `;
+                    alert(`The Total Addressable Market (TAM in INR) is: ${result.tam}\nRelevant Companies: ${result.relevantCompanies}\nPricing (in INR): ${result.pricing}`);
                 } else {
-                    document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
+                    alert('Could not calculate TAM. Please check your input.');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
+                alert('An error occurred while calculating TAM. Please try again.');
             }
         });
     </script>
