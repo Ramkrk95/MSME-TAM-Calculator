@@ -7,147 +7,95 @@
     <title>MSME TAM Calculator</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f8fb;
-            margin: 0;
-            padding: 20px;
+            font-family: Arial, sans-serif;
+            margin: 20px;
         }
-
         .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
         }
-
-        h1 {
+        h1, h2 {
             text-align: center;
-            background-color: #1e73be;
-            color: white;
-            padding: 15px;
-            border-radius: 10px 10px 0 0;
         }
-
-        p {
-            font-size: 18px;
-            color: #333;
-        }
-
-        .summary {
-            background-color: #eef5ff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            text-align: justify;
-        }
-
-        .info-box {
-            background-color: #fff5c3;
-            border-left: 4px solid #ffcc00;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
-        label {
-            font-size: 16px;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        select, input {
+        input, select {
             width: calc(100% - 20px);
-            padding: 12px;
+            padding: 10px;
             margin: 10px 0;
             font-size: 16px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
-
         button {
             width: 100%;
-            padding: 15px;
-            font-size: 18px;
+            padding: 10px;
+            background-color: #4CAF50;
             color: white;
-            background-color: #1e73be;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
+            font-size: 18px;
             cursor: pointer;
         }
-
         button:hover {
-            background-color: #155a99;
+            background-color: #45a049;
         }
-
-        .results {
-            background-color: #f4f8fb;
-            padding: 20px;
+        #tamResult {
             margin-top: 20px;
-            border-radius: 8px;
+            font-weight: bold;
+            color: #333;
             text-align: center;
         }
-
-        .results h3 {
-            margin: 10px 0;
-            font-size: 24px;
-        }
-
-        .results-box {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .result-box {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 30%;
-        }
-
-        .important-note {
-            background-color: #fff5c3;
-            border-left: 4px solid #ffcc00;
-            padding: 15px;
+        .disclaimer {
             margin-top: 20px;
-            border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
         }
-
         .form-link {
             margin-top: 20px;
+            font-size: 16px;
             text-align: center;
         }
-
         .form-link a {
-            color: #1e73be;
+            color: #007BFF;
             text-decoration: none;
-            font-weight: bold;
         }
-
         .form-link a:hover {
             text-decoration: underline;
+        }
+        
+        /* For mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+            }
+            #tamResult {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            #tamResult p {
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>MSME TAM Calculator</h1>
-        <div class="summary">
-            This calculator helps you estimate the Total Addressable Market (TAM) for your MSME product or solution by providing insights into digitally active MSMEs. Let’s get started by filling in the required details.
-        </div>
-
+        <p>
+            This calculator helps you estimate the Total Addressable Market (TAM) for your MSME product or solution by providing insights into digitally active MSMEs. Let's get started by filling in the required details.
+        </p>
         <h2>Getting Started</h2>
-        <div class="info-box">
-            <ul>
-                <li>Determine how many MSMEs are digitally active and open to adopting new technologies.</li>
-                <li>Gauge the market potential for your product or solution.</li>
-                <li>Make more informed decisions to target your audience effectively.</li>
-            </ul>
-        </div>
+        <ul>
+            <li>Determine how many MSMEs are digitally active and open to adopting new technologies.</li>
+            <li>Gauge the market potential for your product or solution.</li>
+            <li>Make more informed decisions to target your audience effectively.</li>
+        </ul>
 
         <!-- Form Fields -->
         <form id="tamForm">
@@ -171,45 +119,33 @@
             <button type="submit">Calculate TAM</button>
         </form>
 
-        <!-- Results Section -->
-        <div id="results" class="results" style="display:none;">
-            <h3>Results</h3>
-            <div class="results-box">
-                <div class="result-box">
-                    <p><strong>Total Addressable Market (TAM)</strong></p>
-                    <p id="tamResult"></p>
-                </div>
-                <div class="result-box">
-                    <p><strong>Relevant Companies</strong></p>
-                    <p id="companiesResult"></p>
-                </div>
-                <div class="result-box">
-                    <p><strong>Your Pricing (Yearly)</strong></p>
-                    <p id="priceResult"></p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Google Forms Link -->
-        <div class="form-link" id="formSection" style="display:none;">
-            <p>If you want to receive a detailed report with relevant companies, please fill out the form below:</p>
-            <p><a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo" target="_blank">Click here to submit your name and email.</a></p>
-        </div>
+        <!-- Section to display the TAM result -->
+        <div id="tamResult"></div>
 
         <!-- Disclaimer -->
-        <div class="important-note">
+        <div class="disclaimer">
             <p><strong>Important:</strong> The results provided here are a preliminary calculation to help you take the first step in estimating your market size. For more detailed TAM calculations, additional filters (such as company size, location, revenue, and technology adoption levels) are recommended.</p>
+            <p>If you want to receive a detailed report with relevant companies, please fill out the form below:</p>
+            <p><a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo" target="_blank">Click here to submit your name and email.</a></p>
         </div>
     </div>
 
     <!-- JavaScript to handle form submission and display the result -->
     <script>
         document.getElementById('tamForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent the default form submission
 
+            // Collect the form data
             var industryProductType = document.getElementById('industryProductType').value;
             var price = document.getElementById('price').value;
 
+            // Debug: Log the form data to the console to check
+            console.log('Form Data:', {
+                industryProductType: industryProductType.trim(),
+                price: price
+            });
+
+            // Send the form data to the backend via POST
             try {
                 const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
@@ -217,19 +153,31 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        industryProductType: industryProductType.trim(),
+                        industryProductType: industryProductType.trim(),  // Ensure no extra spaces
                         price: price
                     }),
                 });
 
-                const result = await response.json();
+                const result = await response.json(); // Parse the JSON response
 
+                // Display the TAM result on the page in the desired format
                 if (response.ok) {
-                    document.getElementById('tamResult').innerText = result.tam.toLocaleString();
-                    document.getElementById('companiesResult').innerText = result.relevantCompanies.toLocaleString();
-                    document.getElementById('priceResult').innerText = `₹${result.pricing.toLocaleString()}`;
-                    document.getElementById('results').style.display = 'block';
-                    document.getElementById('formSection').style.display = 'block'; // Show Google Forms link after the calculation
+                    document.getElementById('tamResult').innerHTML = `
+                        <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                            <div style="flex-basis: 30%; text-align: center;">
+                                <p>Total Addressable Market (TAM)</p>
+                                <p><strong>₹${result.tam}</strong></p>
+                            </div>
+                            <div style="flex-basis: 30%; text-align: center;">
+                                <p>Relevant Companies</p>
+                                <p><strong>${result.relevantCompanies}</strong></p>
+                            </div>
+                            <div style="flex-basis: 30%; text-align: center;">
+                                <p>Your Pricing (Yearly)</p>
+                                <p><strong>₹${result.pricing}</strong></p>
+                            </div>
+                        </div>
+                    `;
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
