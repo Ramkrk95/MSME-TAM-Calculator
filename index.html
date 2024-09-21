@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -129,12 +128,14 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
         <h1>MSME TAM Calculator</h1>
+        <p>
+            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? This calculator is designed to give you a preliminary estimate of the total addressable market (TAM) by offering insights into the number of companies that are already embracing digital tools and are potentially open to investing in the software you are building. This step will help streamline your overall TAM calculation.
+        </p>
+        <h2>Instructions</h2>
         <div class="instructions">
-            <p><strong>Instructions</strong></p>
             <ul>
                 <li>Identify the number of MSMEs that are digitally active and open to adopting new technologies.</li>
                 <li>Understand the market potential for your product or solution.</li>
@@ -185,16 +186,15 @@
             </div>
         </div>
 
-        <!-- Disclaimer -->
-        <div class="important-note">
-            <p><strong>Important Note</strong></p>
-            <p>The results provided here are a preliminary calculation to help you take the first step in estimating your market size. For more detailed TAM calculations, additional filters (such as company size, location, revenue, and technology adoption levels) are recommended.</p>
-        </div>
-
-        <!-- Form Link -->
-        <div class="form-link">
+        <!-- Google Forms Link -->
+        <div class="form-link" id="formSection" style="display:none;">
             <p>If you want to receive a detailed report with relevant companies, please fill out the form below:</p>
             <p><a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo" target="_blank">Click here to submit your name and email.</a></p>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="important-note">
+            <p><strong>Important:</strong> The results provided here are a preliminary calculation to help you take the first step in estimating your market size. For more detailed TAM calculations, additional filters (such as company size, location, revenue, and technology adoption levels) are recommended.</p>
         </div>
     </div>
 
@@ -225,6 +225,7 @@
                     document.getElementById('companiesResult').innerText = result.relevantCompanies.toLocaleString();
                     document.getElementById('priceResult').innerText = `₹${result.pricing.toLocaleString()}`;
                     document.getElementById('results').style.display = 'block';
+                    document.getElementById('formSection').style.display = 'block'; // Show Google Forms link after the calculation
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
@@ -235,5 +236,4 @@
         });
     </script>
 </body>
-
 </html>
