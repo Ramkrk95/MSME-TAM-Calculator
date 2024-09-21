@@ -31,9 +31,14 @@
             border-radius: 8px 8px 0 0;
         }
 
+        p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
         h2 {
             color: #007BFF;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
@@ -96,7 +101,9 @@
             background-color: #218838;
         }
 
-        .result-section {
+        #tamResult {
+            display: none;
+            margin-top: 20px;
             background-color: #e3f2fd;
             text-align: center;
             padding: 15px;
@@ -104,15 +111,17 @@
             border: 1px solid #90caf9;
         }
 
-        .result-section p {
-            margin: 8px 0;
-        }
-
         .important-note {
             background-color: #fffbe0;
             border-left: 5px solid #ffc107;
             padding: 10px;
             font-size: 0.95rem;
+        }
+
+        .form-link {
+            margin-top: 10px;
+            font-size: 0.95rem;
+            text-align: center;
         }
 
         .form-link a {
@@ -131,7 +140,7 @@
             MSME TAM Calculator
         </div>
 
-        <p style="font-size: 1rem; padding: 10px;">
+        <p>
             This calculator helps you estimate the Total Addressable Market (TAM) for your MSME product or solution by providing insights into digitally active MSMEs. Let's get started by filling in the required details.
         </p>
 
@@ -145,7 +154,7 @@
         </div>
 
         <form id="tamForm">
-             <label for="industryProductType">Industry/Product Type *</label>
+           <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
@@ -199,15 +208,18 @@
                 const result = await response.json();
 
                 if (response.ok) {
+                    document.getElementById('tamResult').style.display = 'block';
                     document.getElementById('tamResult').innerHTML = `
                         <p>Total Addressable Market (TAM): ₹${Number(result.tam).toLocaleString()}</p>
                         <p>Relevant Companies: ${Number(result.relevantCompanies).toLocaleString()}</p>
                         <p>Your Pricing (Yearly): ₹${Number(result.pricing).toLocaleString()}</p>
                     `;
                 } else {
+                    document.getElementById('tamResult').style.display = 'block';
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
             } catch (error) {
+                document.getElementById('tamResult').style.display = 'block';
                 document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
             }
         });
