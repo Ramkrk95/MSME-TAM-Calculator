@@ -2,44 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSME TAM Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
+            margin: 20px;
+            background-color: #f5f5f5;
         }
         .container {
-            max-width: 700px;
+            max-width: 600px;
             margin: auto;
             padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
+        h1, h2, p {
             text-align: center;
-            color: #333;
-        }
-        p {
-            font-size: 16px;
-            color: #555;
         }
         label {
-            font-size: 16px;
-            color: #333;
-            display: block;
-            margin-bottom: 8px;
+            font-weight: bold;
+            margin-top: 10px;
         }
         input, select {
-            width: calc(100% - 20px);
+            width: 100%;
             padding: 10px;
-            margin-bottom: 20px;
-            font-size: 16px;
+            margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 5px;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
         button {
             width: 100%;
@@ -48,26 +43,32 @@
             color: white;
             border: none;
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
         }
         button:hover {
             background-color: #45a049;
         }
+        #tamResult {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
         .disclaimer {
             margin-top: 20px;
             font-size: 14px;
-            color: #666;
+            color: #555;
             text-align: center;
         }
         .form-link {
-            margin-top: 20px;
-            font-size: 16px;
             text-align: center;
+            margin-top: 20px;
         }
         .form-link a {
-            color: #007BFF;
+            color: #0066cc;
             text-decoration: none;
+            font-weight: bold;
         }
         .form-link a:hover {
             text-decoration: underline;
@@ -77,15 +78,21 @@
 <body>
     <div class="container">
         <h1>MSME TAM Calculator</h1>
-        <p>Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? This calculator is designed to give you a preliminary estimate of the total addressable market (TAM) by offering insights into the number of companies that are already embracing digital tools and are potentially open to investing in the software you are building. This step will help streamline your overall TAM calculation.</p>
-        
+        <p>
+            Are you developing a product or solution for the MSME (Micro, Small, and Medium Enterprises) sector in India? 
+            This calculator is designed to help you estimate the total addressable market (TAM) by providing insights into 
+            the number of companies that have already embraced digital tools and are potentially willing to invest in the 
+            software you are planning to build.
+        </p>
         <h2>Instructions</h2>
         <ul>
             <li>Identify the number of MSMEs that are digitally active and open to adopting new technologies.</li>
-            <li>Understand the market potential for your product or solution.</li>
+            <li>Understand market potential for your product or solution.</li>
             <li>Make informed decisions to effectively target your audience.</li>
         </ul>
+        <p>Simply fill in the required details to discover the potential market size for your innovative product or solution. Let’s get started!</p>
 
+        <!-- Form Fields -->
         <form id="tamForm">
             <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
@@ -107,23 +114,44 @@
             <button type="submit">Calculate TAM</button>
         </form>
 
-        <div class="disclaimer">
-            <p><strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs. For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed analysis is recommended to refine your strategy.</p>
+        <!-- Section to display the TAM result -->
+        <div id="tamResult">
+            <p><strong>Calculated TAM (Preliminary Estimate):</strong></p>
+            <p><em>This tool helps reduce a step in your TAM calculation process by providing an initial high-level estimate.</em></p>
         </div>
 
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <p><strong>Disclaimer:</strong> The TAM calculated here is a high-level estimate based on limited data inputs. 
+            For a more accurate and closer TAM, additional filtering such as company size, geographic location, revenue brackets, 
+            and technology adoption levels should be considered. This tool provides a preliminary market size, and further detailed 
+            analysis is recommended to refine your strategy.</p>
+            <p><em>Note:</em> This tool provides a high-level TAM estimate to assist in your market sizing process. It will reduce a step in your TAM calculation and allow for further refinement of market size based on additional criteria (company size, revenue brackets, geographic location, etc.). For a more tailored estimate, we recommend further analysis beyond this preliminary calculation.</p>
+        </div>
+
+        <!-- Google Form Link -->
         <div class="form-link">
             <p>If you want to receive the industry-wise relevant companies report, please fill out the form:</p>
-            <p><a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo" target="_blank">Click here to submit your name and email.</a></p>
+            <a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo/edit" target="_blank">Click here to submit your name and email.</a>
         </div>
     </div>
 
+    <!-- JavaScript to handle form submission and display the result -->
     <script>
         document.getElementById('tamForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent the default form submission
 
+            // Collect the form data
             var industryProductType = document.getElementById('industryProductType').value;
             var price = document.getElementById('price').value;
 
+            // Debug: Log the form data to the console to check
+            console.log('Form Data:', {
+                industryProductType: industryProductType.trim(),
+                price: price
+            });
+
+            // Send the form data to the backend via POST
             try {
                 const response = await fetch('https://msme-tam-calculator.vercel.app/api/calculate-tam', {
                     method: 'POST',
@@ -132,20 +160,25 @@
                     },
                     body: JSON.stringify({
                         industryProductType: industryProductType.trim(),
-                        price: price,
+                        price: price
                     }),
                 });
 
-                const result = await response.json();
+                const result = await response.json(); // Parse the JSON response
 
+                // Display the TAM result on the page in the desired format
                 if (response.ok) {
-                    alert(`The Total Addressable Market (TAM in INR) is: ${result.tam}\nRelevant Companies: ${result.relevantCompanies}\nPricing (in INR): ${result.pricing}`);
+                    document.getElementById('tamResult').innerHTML = `
+                        <p>The Total Addressable Market (TAM in INR) is: ${result.tam}</p>
+                        <p>Relevant Companies: ${result.relevantCompanies}</p>
+                        <p>Pricing (in INR): ${result.pricing}</p>
+                    `;
                 } else {
-                    alert('Could not calculate TAM. Please check your input.');
+                    document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred while calculating TAM. Please try again.');
+                document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
             }
         });
     </script>
