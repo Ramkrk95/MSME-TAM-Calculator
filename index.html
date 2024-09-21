@@ -2,114 +2,140 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MSME TAM Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
         }
+
         .container {
             max-width: 800px;
-            margin: auto;
+            margin: 20px auto;
             padding: 20px;
-            border: 1px solid #ddd;
+            background-color: #fff;
             border-radius: 8px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .header {
-            text-align: center;
-            color: #0056ff;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .header p {
-            margin: 0;
-            font-size: 16px;
-        }
-        .instructions, .important-note {
-            background-color: #fffae6;
+
+        .title {
+            background-color: #007BFF;
+            color: #fff;
             padding: 15px;
-            margin: 20px 0;
-            border-radius: 8px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border-radius: 8px 8px 0 0;
         }
-        input, select, button {
+
+        h2 {
+            color: #007BFF;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .instructions, .result-section, .important-note {
+            background-color: #fdfdfd;
+            padding: 15px;
+            border: 1px solid #e3e3e3;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .instructions {
+            background-color: #ffffe0;
+            border-left: 5px solid #ffeb3b;
+        }
+
+        .instructions ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .instructions ul li {
+            margin-bottom: 8px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        button {
             background-color: #28a745;
             color: white;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #218838;
         }
-        .results {
-            background-color: #eef6ff;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
+
+        .result-section {
+            background-color: #f1f1f1;
             text-align: center;
+            padding: 15px;
         }
-        .results p {
-            margin: 8px 0;
-            font-size: 18px;
-            font-weight: bold;
+
+        .result-section p {
+            font-size: 1.2rem;
+            margin: 10px 0;
         }
+
         .important-note {
-            background-color: #fff3cd;
-            font-size: 14px;
+            background-color: #fffbe0;
+            border-left: 5px solid #ffc107;
         }
-        .important-note p {
-            margin: 0;
-        }
-        .form-link {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 16px;
-        }
+
         .form-link a {
-            color: #0056ff;
+            color: #007BFF;
             text-decoration: none;
         }
+
         .form-link a:hover {
             text-decoration: underline;
-        }
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-            .results p {
-                font-size: 16px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>MSME TAM Calculator</h1>
-            <p>Estimate the Total Addressable Market (TAM) for your MSME product or solution</p>
+        <div class="title">
+            MSME TAM Calculator
         </div>
 
+        <p>This calculator helps you estimate the Total Addressable Market (TAM) for your MSME product or solution by providing insights into digitally active MSMEs. Let's get started by filling in the required details.</p>
+
         <div class="instructions">
-            <h3>Getting Started</h3>
-            <p>Determine how many MSMEs are digitally active and open to adopting new technologies. Gauge the market potential for your product or solution. Make more informed decisions to target your audience effectively.</p>
+            <h2>Getting Started</h2>
+            <ul>
+                <li>Determine how many MSMEs are digitally active and open to adopting new technologies.</li>
+                <li>Gauge the market potential for your product or solution.</li>
+                <li>Make more informed decisions to target your audience effectively.</li>
+            </ul>
         </div>
 
         <form id="tamForm">
-             <label for="industryProductType">Industry/Product Type *</label>
+           <label for="industryProductType">Industry/Product Type *</label>
             <select id="industryProductType" name="industryProductType" required>
                 <option value="">Select an option</option>
                 <option value="Industry-ecommerce">Industry-ecommerce</option>
@@ -129,21 +155,18 @@
             <button type="submit">Calculate TAM</button>
         </form>
 
-        <!-- Section to display the TAM result -->
-        <div id="tamResult" class="results"></div>
+        <div id="tamResult" class="result-section"></div>
 
         <div class="form-link">
             <p>If you want to receive a detailed report with relevant companies, please fill out the form below:</p>
-            <p><a href="https://docs.google.com/forms/d/your-google-form-id" target="_blank">Click here to submit your name and email.</a></p>
+            <p><a href="https://docs.google.com/forms/d/10vJxHBh-_yygfKnt-yhK8aAWpzo3X59Y3lrhyXNNNeo" target="_blank">Click here to submit your name and email.</a></p>
         </div>
 
-        <!-- Important Note -->
         <div class="important-note">
             <p><strong>Important:</strong> The results provided here are a preliminary calculation to help you take the first step in estimating your market size. For more detailed TAM calculations, additional filters (such as company size, location, revenue, and technology adoption levels) are recommended.</p>
         </div>
     </div>
 
-    <!-- JavaScript to handle form submission and display the result -->
     <script>
         document.getElementById('tamForm').addEventListener('submit', async function(event) {
             event.preventDefault();
@@ -159,7 +182,7 @@
                     },
                     body: JSON.stringify({
                         industryProductType: industryProductType.trim(),
-                        price: price
+                        price: price,
                     }),
                 });
 
@@ -167,15 +190,14 @@
 
                 if (response.ok) {
                     document.getElementById('tamResult').innerHTML = `
-                        <p>Total Addressable Market (TAM): ₹${result.tam.toLocaleString()}</p>
-                        <p>Relevant Companies: ${result.relevantCompanies.toLocaleString()}</p>
-                        <p>Your Pricing (Yearly): ₹${result.pricing.toLocaleString()}</p>
+                        <p>Total Addressable Market (TAM): ₹${Number(result.tam).toLocaleString()}</p>
+                        <p>Relevant Companies: ${Number(result.relevantCompanies).toLocaleString()}</p>
+                        <p>Your Pricing (Yearly): ₹${Number(result.pricing).toLocaleString()}</p>
                     `;
                 } else {
                     document.getElementById('tamResult').innerHTML = 'Could not calculate TAM. Please check your input.';
                 }
             } catch (error) {
-                console.error('Error:', error);
                 document.getElementById('tamResult').innerHTML = 'An error occurred while calculating TAM. Please try again.';
             }
         });
